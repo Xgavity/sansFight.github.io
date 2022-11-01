@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital@1&family=Montserrat&family=Press+Start+2P&family=Roboto&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        .heart >img{
+            width: 50px;
+            height: 50px;
+            
+        }
+        body{
+            background-color: black;
+        }
+        h1{
+            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 25px;
+            padding-top: 5px;
+            
+            
+            background-color: white;
+            width: 100%;
+            text-align: center;
+            
+        }
+        #resultBox{
+            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Press Start 2P', cursive;
+            
+            width: 200px;
+            height: 200px;
+            border: solid white 10px;
+            margin-left: 42%;
+            font-size: 100px;
+            color: white;
+        }
+        input{
+            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Press Start 2P', cursive;
+            
+            width: 200px;
+            height: 150px;
+            font-size: 100px;
+            background-color: black;
+            color: white;
+            border: solid white 5px;
+            /* margin-left: 10%; */
+        }
+        #wordBox{
+            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 20px;
+            letter-spacing: 5px;
+            line-height: 30px;
+            width: 500px;
+            height: 240px;
+            border: solid white 5px;
+            /* margin-left: 70%; */
+            color: white;
+            /* margin-top: 5%; */
+        }
+        #id{
+            margin-left: 40%;
+        }
+        #num{
+            color: white;
+            width: 13px;
+            height: 15px;
+            border: solid white 2px;
+        }
+        #flexbox{
+            display: flex;
+            justify-content: center;
+            
+            
+        }
+        #mini{
+            display: flex;
+            flex-direction: column;
+            
+            
+        }
+        #btn{
+            margin-top: 20px;
+            margin-left: 40%;
+            height: 84px;
+            width: 200px;
+            
+        }
+        #details{
+            color: white;
+            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 20px;
+            text-align: center;
+        }
+        #options{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            
+        }
+        #options >img{
+            height: 84px;
+            width: 220px;
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+        
+        
+        #sans{
+            margin-left: 42%;
+            width: 150px;
+            padding-top: 100px;
+        }
+
+        canvas {
+            border:1px solid #d3d3d3;
+            background-color: black;
+            position: absolute;
+            top: 367px;
+            left: 512px;
+        }
+        #attack{
+            height: 85px;
+            width: 220px;
+            margin-left: 30px;
+            margin-right: 30px;
+            background-color: black;
+            border: solid black ;
+            outline: none;
+            
+        }
+        
+
+        
+    </style>
+</head>
+<body onload="startGame(), typeWriter()">
+    
+    <h1>Scuffed Sans Boss Battle</h1>
+    <!-- <div id="resultBox"></div> -->
+    <img id="sans" src="img/sans-undertale.jpg">
+    <div id="flexbox">
+        <div id="mini">
+            <!-- <input id="anwrBox">
+            <button id="btn">Guess?</button> -->
+        </div>
+        <div id="wordBox">
+            
+        </div>
+    </div>
+    <div id="UI">
+        <div id="details">
+            <p>Chara LV 19 HP:92/92</p>
+        </div>
+        <div id="options">
+            <button id="attack">
+                <img id="attackIcon" src="img/fightBTN.png">
+        </button>
+            <img src="img/actBTN.png">
+            <img src="img/itemBTN.png">
+            <img src="img/mercyBTN.jpg">
+        </div>
+    </div>
+    
+
+    <script>
+        var i = 0;
+        var txt = '* You feel like youre going to have a bad time.';
+        var speed = 50;
+
+        function typeWriter() {
+        if (i < txt.length) {
+            document.getElementById("wordBox").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+  }
+}
+
+
+        attack.addEventListener('click', function(){
+            myGameArea.start();
+        });
+        var myGamePiece;
+        var myObstacles = [];
+        var myScore;
+
+function startGame() {
+    myGamePiece = new component(20, 20, "img/undertaleHeart.png", 10, 120, "image");
+    
+    myScore = new component("30px", "Consolas", "black", 280, 40, "text");
+    
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 510;
+        this.canvas.height = 250;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 5);
+        },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+function component(width, height, color, x, y, type) {
+    this.type = type;
+    if (type == "image") {
+    this.image = new Image();
+    this.image.src = color;
+  }
+    this.score = 0;
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;
+    this.x = x;
+    this.y = y;
+    this.gravity = 0;
+    this.gravitySpeed = 0;
+    this.update = function() {
+        ctx = myGameArea.context;
+        if (type == "image") {
+            ctx.drawImage(this.image, 
+                this.x, 
+                this.y,
+                this.width, this.height);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+    }
+    this.newPos = function() {
+        this.gravitySpeed += this.gravity;
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravitySpeed;
+        this.hitBottom();
+    }
+    this.hitBottom = function() {
+        var rockbottom = myGameArea.canvas.height - this.height;
+        if (this.y > rockbottom) {
+            this.y = rockbottom;
+            this.gravitySpeed = 0;
+        }
+    }
+    this.crashWith = function(otherobj) {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        var crash = true;
+        if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+            crash = false;
+        }
+        return crash;
+    }
+}
+
+function updateGameArea() {
+    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+    for (i = 0; i < myObstacles.length; i += 1) {
+        if (myGamePiece.crashWith(myObstacles[i])) {
+            return;
+        } 
+    }
+    myGameArea.clear();
+    myGameArea.frameNo += 1;
+    if (myGameArea.frameNo == 1 || everyinterval(150)) {
+        x = myGameArea.canvas.width;
+        minHeight = 20;
+        maxHeight = 200;
+        height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+        minGap = 50;
+        maxGap = 200;
+        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+        myObstacles.push(new component(10, height, "white", x, 0));
+        myObstacles.push(new component(10, x - height - gap, "white", x, height +gap));
+    }
+    for (i = 0; i < myObstacles.length; i += 1) {
+        myObstacles[i].x += -1;
+        myObstacles[i].update();
+    }
+    myScore.text="SCORE: " + myGameArea.frameNo;
+    myScore.update();
+    myGamePiece.newPos();
+    myGamePiece.update();
+}
+
+function everyinterval(n) {
+    if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+    return false;
+}
+
+function accelerate(n) {
+    myGamePiece.gravity = n;
+}
+function moveup() {
+    myGamePiece.speedY = -2; 
+}
+
+function movedown() {
+    myGamePiece.speedY = 2; 
+}
+
+function moveleft() {
+    myGamePiece.speedX = -2; 
+}
+
+function moveright() {
+    myGamePiece.speedX = 2; 
+}
+
+function clearmove() {
+    myGamePiece.speedX = 0; 
+    myGamePiece.speedY = 0; 
+}
+
+var heart = document.querySelector(".heart")
+
+        let move = 20;
+
+        window.addEventListener('load', () => {
+            heart.style.position = "relative";
+            heart.style.left = 0;
+            heart.style.top = 0;
+        });
+
+        window.addEventListener('keydown', (e) => {
+            switch (e.key) {
+                case "ArrowLeft":
+                    moveleft()
+                    break;
+                case "ArrowRight":
+                    moveright()
+                    break;
+                case "ArrowUp":
+                    moveup()
+                    break;
+                case "ArrowDown":
+                    movedown()
+                    break;
+                
+            }
+        })
+
+        window.addEventListener('keyup', (e) => {
+            switch (e.key) {
+                case "ArrowLeft":
+                myGamePiece.speedY = 0;
+                myGamePiece.speedX = 0;
+                    break;
+                case "ArrowRight":
+                myGamePiece.speedY = 0;
+                myGamePiece.speedX = 0;
+                    break;
+                case "ArrowUp":
+                myGamePiece.speedX = 0;
+                myGamePiece.speedY = 0;
+                    break;
+                case "ArrowDown":
+                myGamePiece.speedX = 0;
+                myGamePiece.speedY = 0;
+                    break;
+                
+            }
+        })
+    </script>
+</body>
+</html>
